@@ -4,8 +4,8 @@
   "description": "A blog to spread awareness of the diverse stories of immigrants.",
   "main": "index.js",
   "scripts": {
-    "dev": "astro dev",
-    "build": "yarn && astro build",
+    "dev": "yarn astro dev",
+    "build": "yarn astro build",
     "serve": "astro serve"
   },
   "keywords": [
