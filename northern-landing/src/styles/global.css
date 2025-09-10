@@ -1,48 +1,70 @@
+/* Modern CSS Reset and Base Styles */
+* {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
 body {
-    font-family: Arial, sans-serif;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
     line-height: 1.6;
     margin: 0;
     padding: 0;
-    background-color: #f4f4f4;
+    background-color: #ffffff;
+    color: #1f2937;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
-header {
-    background: #35424a;
-    color: #ffffff;
-    padding: 10px 0;
-    text-align: center;
+/* Utility classes for better typography */
+.prose {
+    max-width: 65ch;
 }
 
-h1 {
-    margin: 0;
+.prose h1, .prose h2, .prose h3, .prose h4, .prose h5, .prose h6 {
+    font-weight: 600;
+    line-height: 1.25;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
 }
 
-nav {
-    margin: 20px 0;
+.prose p {
+    margin-bottom: 1.5rem;
 }
 
-nav a {
-    color: #ffffff;
-    text-decoration: none;
-    margin: 0 15px;
+.prose ul, .prose ol {
+    margin-bottom: 1.5rem;
+    padding-left: 1.5rem;
 }
 
-nav a:hover {
-    text-decoration: underline;
+.prose li {
+    margin-bottom: 0.5rem;
 }
 
-.container {
-    width: 80%;
-    margin: auto;
+/* Focus styles for accessibility */
+*:focus {
+    outline: 2px solid #3b82f6;
+    outline-offset: 2px;
+}
+
+/* Smooth transitions for interactive elements */
+a, button {
+    transition: all 0.2s ease-in-out;
+}
+
+/* Line clamp utilities */
+.line-clamp-2 {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
     overflow: hidden;
 }
 
-footer {
-    background: #35424a;
-    color: #ffffff;
-    text-align: center;
-    padding: 10px 0;
-    position: relative;
-    bottom: 0;
-    width: 100%;
+.line-clamp-3 {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
 }

@@ -1,7 +1,7 @@
 {
   "name": "northern-landing",
   "version": "1.0.0",
-  "description": "A blog to spread awareness of the diverse stories of immigrants.",
+  "description": "A comprehensive blog and resource hub for newcomers to Canada, featuring immigration stories, settlement guides, and community support.",
   "main": "index.js",
   "scripts": {
     "dev": "yarn astro dev",
@@ -9,12 +9,18 @@
     "serve": "astro serve"
   },
   "keywords": [
-    "Astro",
-    "React",
-    "blog",
-    "non-profit",
-    "immigrants",
-    "stories"
+    "newcomers to Canada",
+    "Canadian immigration",
+    "settlement in Canada",
+    "immigration stories",
+    "Canada newcomer resources",
+    "Canadian citizenship",
+    "living in Canada",
+    "immigration blog",
+    "Canada settlement guide",
+    "newcomer support",
+    "Canadian community",
+    "immigration tips"
   ],
   "author": "Northern Landing",
   "license": "MIT",

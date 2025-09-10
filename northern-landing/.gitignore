@@ -1,6 +1,8 @@
 # dependencies
 /node_modules
 
+/.yarn/install-state.gz
+
 # production
 /dist
 

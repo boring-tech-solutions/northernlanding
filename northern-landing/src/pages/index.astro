@@ -1,64 +1,221 @@
 ---
-layout: '../layouts/BlogLayout.astro'
-title: "Welcome to Northern Landing"
+import { getCollection } from 'astro:content';
+import BlogLayout from '../layouts/BlogLayout.astro';
+
+const posts = await getCollection('posts');
+const sortedPosts = posts.sort((a, b) => 
+  new Date(b.data.pubDate).valueOf() - new Date(a.data.pubDate).valueOf()
+);
+const featuredPosts = sortedPosts.slice(0, 3);
+const recentPosts = sortedPosts.slice(0, 6);
 ---
 
-<!-- Hero Section with Parallax Trees Image -->
-<section class="relative h-[60vh] flex items-center justify-center overflow-hidden">
-  <img
-    src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1500&q=80"
-    alt="Forest of tall trees"
-    class="absolute inset-0 w-full h-full object-cover object-center z-0"
-    style="transform: translateZ(0);"
-  />
-  <div class="relative z-10 bg-blue-900/70 rounded-xl px-8 py-6 shadow-lg">
-    <h1 class="text-5xl md:text-6xl font-extrabold text-white drop-shadow mb-2">Northern Landing</h1>
-    <p class="text-xl md:text-2xl text-blue-200 font-medium">Stories that take root and grow</p>
-  </div>
-</section>
+<BlogLayout 
+  title="Northern Landing - Your Journey to Canada Starts Here"
+  description="Welcome to Northern Landing, your comprehensive resource hub for newcomers to Canada. Discover success stories, immigration guides, settlement tips, and community support to help you build your new life in Canada."
+>
+  <!-- Hero Section -->
+  <section class="relative bg-gradient-to-br from-blue-900 via-blue-800 to-indigo-900 text-white py-20">
+    <div class="absolute inset-0 bg-black/20"></div>
+    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center">
+        <h1 class="text-4xl md:text-6xl font-bold mb-6">
+          Welcome to <span class="text-yellow-400">Canada</span>
+        </h1>
+        <p class="text-xl md:text-2xl mb-8 text-blue-100 max-w-3xl mx-auto">
+          Your comprehensive resource hub for immigration, settlement, and building a new life in Canada. 
+          Real stories, expert guidance, and community support.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <a href="/blog" class="bg-yellow-400 text-blue-900 px-8 py-3 rounded-lg font-semibold hover:bg-yellow-300 transition-colors">
+            Read Success Stories
+          </a>
+          <a href="/about" class="border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-blue-900 transition-colors">
+            Learn About Us
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
 
-<!-- Narrative Section 1 -->
-<section class="max-w-3xl mx-auto px-4 py-16">
-  <div class="bg-white rounded-lg shadow-lg p-8 border-l-8 border-pink-400">
-    <h2 class="text-3xl font-bold text-blue-900 mb-4">Every Journey Begins with a Step</h2>
-    <p class="text-lg text-gray-700 mb-2">
-      For every immigrant, the journey starts with a single, courageous step. At Northern Landing, we celebrate these beginnings—each one unique, each one powerful.
-    </p>
-    <span class="inline-block bg-pink-400 text-white px-4 py-1 rounded-full font-semibold mt-4">#FirstSteps</span>
-  </div>
-</section>
+  <!-- Featured Stories Section -->
+  <section class="py-16 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Featured Success Stories</h2>
+        <p class="text-xl text-gray-600">Real experiences from newcomers who have built successful lives in Canada</p>
+      </div>
+      
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        {featuredPosts.map((post) => (
+          <article class="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
+            <div class="p-6">
+              <div class="flex items-center mb-3">
+                <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm font-medium">
+                  {post.data.category}
+                </span>
+                <span class="ml-3 text-gray-500 text-sm">
+                  {new Date(post.data.pubDate).toLocaleDateString('en-CA', {
+                    month: 'short',
+                    day: 'numeric',
+                    year: 'numeric'
+                  })}
+                </span>
+              </div>
+              <h3 class="text-xl font-semibold text-gray-900 mb-3 line-clamp-2">
+                {post.data.title}
+              </h3>
+              <p class="text-gray-600 mb-4 line-clamp-3">
+                {post.data.description}
+              </p>
+              <div class="flex items-center justify-between">
+                <a 
+                  href={`/blog/${post.slug}`}
+                  class="text-blue-600 font-medium hover:text-blue-700 transition-colors"
+                >
+                  Read Full Story →
+                </a>
+                <div class="flex items-center text-gray-500 text-sm">
+                  <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                  </svg>
+                  {post.data.readTime || '5'} min read
+                </div>
+              </div>
+            </div>
+          </article>
+        ))}
+      </div>
+      
+      <div class="text-center mt-8">
+        <a href="/blog" class="bg-blue-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-blue-700 transition-colors">
+          View All Stories
+        </a>
+      </div>
+    </div>
+  </section>
 
-<!-- Narrative Section 2 -->
-<section class="max-w-3xl mx-auto px-4 py-16">
-  <div class="bg-blue-50 rounded-lg shadow-lg p-8 border-l-8 border-yellow-400">
-    <h2 class="text-3xl font-bold text-yellow-600 mb-4">Roots and Branches</h2>
-    <p class="text-lg text-gray-700 mb-2">
-      Like trees, our roots run deep and our branches reach wide. We honor the traditions that ground us and the dreams that help us grow.
-    </p>
-    <span class="inline-block bg-yellow-400 text-blue-900 px-4 py-1 rounded-full font-semibold mt-4">#GrowingTogether</span>
-  </div>
-</section>
+  <!-- Quick Access Section -->
+  <section class="py-16 bg-gray-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Quick Access</h2>
+        <p class="text-xl text-gray-600">Everything you need to know about starting your Canadian journey</p>
+      </div>
+      
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        <div class="bg-white rounded-lg shadow-lg p-8">
+          <h3 class="text-2xl font-bold text-gray-900 mb-4">📋 Immigration & Settlement</h3>
+          <ul class="space-y-3 text-gray-600">
+            <li class="flex items-start">
+              <span class="text-green-500 mr-2">✓</span>
+              Step-by-step immigration guides
+            </li>
+            <li class="flex items-start">
+              <span class="text-green-500 mr-2">✓</span>
+              Settlement services and resources
+            </li>
+            <li class="flex items-start">
+              <span class="text-green-500 mr-2">✓</span>
+              Work permit and visa information
+            </li>
+            <li class="flex items-start">
+              <span class="text-green-500 mr-2">✓</span>
+              Permanent residence pathways
+            </li>
+          </ul>
+          <a href="/blog?category=immigration" class="inline-block mt-6 bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition-colors">
+            Explore Immigration Guides
+          </a>
+        </div>
+        
+        <div class="bg-white rounded-lg shadow-lg p-8">
+          <h3 class="text-2xl font-bold text-gray-900 mb-4">🏠 Living in Canada</h3>
+          <ul class="space-y-3 text-gray-600">
+            <li class="flex items-start">
+              <span class="text-green-500 mr-2">✓</span>
+              Housing and accommodation tips
+            </li>
+            <li class="flex items-start">
+              <span class="text-green-500 mr-2">✓</span>
+              Healthcare system guide
+            </li>
+            <li class="flex items-start">
+              <span class="text-green-500 mr-2">✓</span>
+              Education and schools
+            </li>
+            <li class="flex items-start">
+              <span class="text-green-500 mr-2">✓</span>
+              Banking and financial services
+            </li>
+          </ul>
+          <a href="/blog?category=settlement" class="inline-block mt-6 bg-green-600 text-white px-6 py-2 rounded-lg hover:bg-green-700 transition-colors">
+            Read Settlement Tips
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
 
-<!-- Narrative Section 3 -->
-<section class="max-w-3xl mx-auto px-4 py-16">
-  <div class="bg-white rounded-lg shadow-lg p-8 border-l-8 border-green-400">
-    <h2 class="text-3xl font-bold text-green-700 mb-4">Stories in the Canopy</h2>
-    <p class="text-lg text-gray-700 mb-2">
-      Above, in the canopy, our stories intertwine. Here, we share voices, laughter, and hope—building a community that thrives in diversity.
-    </p>
-    <span class="inline-block bg-green-400 text-white px-4 py-1 rounded-full font-semibold mt-4">#SharedStories</span>
-  </div>
-</section>
+  <!-- Recent Posts Section -->
+  <section class="py-16 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Latest Resources</h2>
+        <p class="text-xl text-gray-600">Stay updated with our newest guides and success stories</p>
+      </div>
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {recentPosts.map((post) => (
+          <article class="bg-gray-50 rounded-lg p-6 hover:shadow-lg transition-shadow">
+            <div class="flex items-center mb-3">
+              <span class="bg-blue-100 text-blue-800 px-2 py-1 rounded text-sm font-medium">
+                {post.data.category}
+              </span>
+              <span class="ml-3 text-gray-500 text-sm">
+                {new Date(post.data.pubDate).toLocaleDateString('en-CA', {
+                  month: 'short',
+                  day: 'numeric'
+                })}
+              </span>
+            </div>
+            <h3 class="text-lg font-semibold text-gray-900 mb-3 line-clamp-2">
+              {post.data.title}
+            </h3>
+            <p class="text-gray-600 mb-4 line-clamp-2 text-sm">
+              {post.data.description}
+            </p>
+            <a 
+              href={`/blog/${post.slug}`}
+              class="text-blue-600 font-medium hover:text-blue-700 transition-colors text-sm"
+            >
+              Read More →
+            </a>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
 
-<!-- Call to Action -->
-<section class="max-w-3xl mx-auto px-4 py-16 text-center">
-  <div class="inline-block bg-pink-400 text-white px-8 py-6 rounded-2xl shadow-lg">
-    <h2 class="text-2xl font-bold mb-2">Ready to share your story?</h2>
-    <p class="mb-4">Join Northern Landing and help us grow a forest of voices.</p>
-    <a href="/contact" class="inline-block bg-yellow-400 text-blue-900 font-bold px-6 py-2 rounded-full shadow hover:bg-yellow-300 transition">Contact Us</a>
-  </div>
-</section>
-
-<footer class="text-center text-gray-500 py-6">
-  <p>&copy; 2023 Northern Landing. All rights reserved.</p>
-</footer>
+  <!-- Call to Action -->
+  <section class="py-16 bg-gradient-to-r from-blue-600 to-indigo-700 text-white">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <h2 class="text-3xl md:text-4xl font-bold mb-4">Ready to Start Your Canadian Journey?</h2>
+      <p class="text-xl mb-8 text-blue-100">
+        Join thousands of newcomers who have found success, community, and a new home in Canada. 
+        Your story starts here.
+      </p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a href="/blog" class="bg-white text-blue-600 px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors">
+          Read Success Stories
+        </a>
+        <a href="/about" class="border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-blue-600 transition-colors">
+          Learn About Us
+        </a>
+        <a href="/contact" class="bg-yellow-400 text-blue-900 px-8 py-3 rounded-lg font-semibold hover:bg-yellow-300 transition-colors">
+          Contact Us
+        </a>
+      </div>
+    </div>
+  </section>
+</BlogLayout>

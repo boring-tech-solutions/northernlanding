@@ -1,18 +1,260 @@
 ---
+import BlogLayout from '../layouts/BlogLayout.astro';
+
 layout: '../layouts/BlogLayout.astro'
-title: "About Northern Landing"
+title: "About Northern Landing - Supporting Newcomers to Canada"
+description: "Learn about Northern Landing's mission to support newcomers to Canada with resources, community connections, and success stories. Discover how we help immigrants build their new lives in Canada."
 ---
 
-<section>
-  <h1>About Northern Landing</h1>
-  <p>Northern Landing is a non-profit organization dedicated to spreading awareness of the diverse stories of immigrants. We believe that every immigrant has a unique journey that deserves to be heard and celebrated.</p>
-  
-  <h2>Our Mission</h2>
-  <p>Our mission is to create a platform where immigrants can share their stories, experiences, and challenges. By amplifying these voices, we aim to foster understanding, empathy, and connection within our communities.</p>
-  
-  <h2>What We Do</h2>
-  <p>We organize storytelling events, workshops, and community discussions that highlight the rich tapestry of immigrant experiences. Through our blog, we share written narratives, interviews, and articles that reflect the lives of immigrants in our society.</p>
-  
-  <h2>Get Involved</h2>
-  <p>If you are interested in sharing your story or supporting our mission, please reach out to us. Together, we can make a difference and promote a more inclusive world.</p>
-</section>
+<BlogLayout 
+  title="Blog - Success Stories & Resources for Newcomers to Canada"
+  description="Read inspiring success stories, immigration tips, and settlement guides from newcomers who have built successful lives in Canada."
+>
+<div class="min-h-screen bg-white">
+  <!-- Hero Section -->
+  <section class="relative bg-gradient-to-br from-blue-50 via-white to-indigo-50 py-20">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center">
+        <h1 class="text-4xl md:text-6xl font-bold text-gray-900 mb-6">
+          About <span class="text-blue-600">Northern Landing</span>
+        </h1>
+        <p class="text-xl md:text-2xl text-gray-600 max-w-4xl mx-auto leading-relaxed">
+          We're a community-driven organization dedicated to supporting newcomers to Canada with resources, 
+          guidance, and connections to help them build successful lives in their new home.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+
+    <!-- Mission Section -->
+    <section class="mb-20">
+      <div class="bg-gradient-to-br from-blue-600 via-blue-700 to-indigo-800 rounded-2xl p-8 md:p-12 text-white shadow-2xl">
+        <div class="text-center mb-12">
+          <h2 class="text-3xl md:text-4xl font-bold mb-6">Our Mission</h2>
+          <p class="text-xl md:text-2xl text-blue-100 max-w-4xl mx-auto leading-relaxed">
+            To empower newcomers to Canada with the knowledge, resources, and community support needed to 
+            thrive in their new home. We believe every newcomer deserves access to accurate information, 
+            practical guidance, and a supportive community.
+          </p>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div class="text-center group">
+            <div class="w-20 h-20 bg-white/20 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:bg-white/30 transition-all duration-300">
+              <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
+              </svg>
+            </div>
+            <h3 class="text-xl font-semibold mb-3">Education</h3>
+            <p class="text-blue-100">Comprehensive resources and guides</p>
+          </div>
+          <div class="text-center group">
+            <div class="w-20 h-20 bg-white/20 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:bg-white/30 transition-all duration-300">
+              <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
+              </svg>
+            </div>
+            <h3 class="text-xl font-semibold mb-3">Community</h3>
+            <p class="text-blue-100">Building connections and support networks</p>
+          </div>
+          <div class="text-center group">
+            <div class="w-20 h-20 bg-white/20 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:bg-white/30 transition-all duration-300">
+              <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path>
+              </svg>
+            </div>
+            <h3 class="text-xl font-semibold mb-3">Inspiration</h3>
+            <p class="text-blue-100">Sharing success stories and experiences</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- What We Do Section -->
+    <section class="mb-20">
+      <div class="text-center mb-16">
+        <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">What We Do</h2>
+        <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+          We provide comprehensive support across all aspects of the newcomer journey
+        </p>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div class="bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 p-8 border border-gray-100">
+          <div class="w-16 h-16 bg-blue-100 rounded-2xl flex items-center justify-center mb-6">
+            <svg class="w-8 h-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
+            </svg>
+          </div>
+          <h3 class="text-xl font-semibold text-gray-900 mb-4">Comprehensive Resources</h3>
+          <p class="text-gray-600 leading-relaxed">
+            We provide detailed guides on immigration, settlement, employment, and daily life in Canada. 
+            Our resources are regularly updated to reflect the latest policies and best practices.
+          </p>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 p-8 border border-gray-100">
+          <div class="w-16 h-16 bg-green-100 rounded-2xl flex items-center justify-center mb-6">
+            <svg class="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
+            </svg>
+          </div>
+          <h3 class="text-xl font-semibold text-gray-900 mb-4">Community Building</h3>
+          <p class="text-gray-600 leading-relaxed">
+            We connect newcomers with established Canadians and fellow immigrants to build support networks, 
+            share experiences, and create lasting friendships.
+          </p>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 p-8 border border-gray-100">
+          <div class="w-16 h-16 bg-yellow-100 rounded-2xl flex items-center justify-center mb-6">
+            <svg class="w-8 h-8 text-yellow-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path>
+            </svg>
+          </div>
+          <h3 class="text-xl font-semibold text-gray-900 mb-4">Success Stories</h3>
+          <p class="text-gray-600 leading-relaxed">
+            We share real stories from newcomers who have successfully built their lives in Canada, 
+            providing inspiration and practical insights for others on similar journeys.
+          </p>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 p-8 border border-gray-100">
+          <div class="w-16 h-16 bg-purple-100 rounded-2xl flex items-center justify-center mb-6">
+            <svg class="w-8 h-8 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+            </svg>
+          </div>
+          <h3 class="text-xl font-semibold text-gray-900 mb-4">Expert Guidance</h3>
+          <p class="text-gray-600 leading-relaxed">
+            Our content is created and reviewed by immigration experts, settlement workers, and successful 
+            newcomers to ensure accuracy and relevance.
+          </p>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 p-8 border border-gray-100">
+          <div class="w-16 h-16 bg-red-100 rounded-2xl flex items-center justify-center mb-6">
+            <svg class="w-8 h-8 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+            </svg>
+          </div>
+          <h3 class="text-xl font-semibold text-gray-900 mb-4">Up-to-Date Information</h3>
+          <p class="text-gray-600 leading-relaxed">
+            We stay current with immigration policies, job market trends, and settlement services to 
+            provide the most relevant and timely information.
+          </p>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 p-8 border border-gray-100">
+          <div class="w-16 h-16 bg-indigo-100 rounded-2xl flex items-center justify-center mb-6">
+            <svg class="w-8 h-8 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
+            </svg>
+          </div>
+          <h3 class="text-xl font-semibold text-gray-900 mb-4">Cultural Support</h3>
+          <p class="text-gray-600 leading-relaxed">
+            We help newcomers understand Canadian culture, workplace norms, and social expectations 
+            while celebrating the diversity they bring to our communities.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Our Story Section -->
+    <section class="mb-20">
+      <div class="bg-gradient-to-br from-gray-50 to-blue-50 rounded-2xl p-8 md:p-12">
+        <div class="max-w-4xl mx-auto">
+          <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-8 text-center">Our Story</h2>
+          <div class="prose prose-lg max-w-none text-center">
+            <p class="text-gray-600 mb-6 text-lg leading-relaxed">
+              Northern Landing was founded in 2020 by a group of immigrants and settlement workers who recognized 
+              the need for comprehensive, accessible resources for newcomers to Canada. Having experienced the 
+              challenges of immigration and settlement firsthand, our founders understood the importance of 
+              community support and accurate information.
+            </p>
+            <p class="text-gray-600 mb-6 text-lg leading-relaxed">
+              What started as a small blog sharing personal experiences has grown into a comprehensive platform 
+              serving thousands of newcomers across Canada. We've partnered with settlement agencies, 
+              professional associations, and community organizations to provide the most up-to-date and 
+              relevant information.
+            </p>
+            <p class="text-gray-600 text-lg leading-relaxed">
+              Today, Northern Landing continues to evolve, adding new resources, expanding our community, 
+              and adapting to the changing needs of newcomers. We're proud to be part of the journey for 
+              so many people building their new lives in Canada.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Get Involved Section -->
+    <section class="mb-20">
+      <div class="bg-gradient-to-br from-blue-600 via-blue-700 to-indigo-800 rounded-2xl p-8 md:p-12 text-white shadow-2xl">
+        <div class="text-center mb-12">
+          <h2 class="text-3xl md:text-4xl font-bold mb-6">Get Involved</h2>
+          <p class="text-xl md:text-2xl text-blue-100 max-w-4xl mx-auto leading-relaxed">
+            Whether you're a newcomer looking for support or an established Canadian wanting to help, 
+            there are many ways to get involved with Northern Landing.
+          </p>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-8 hover:bg-white/20 transition-all duration-300">
+            <div class="w-16 h-16 bg-white/20 rounded-2xl flex items-center justify-center mb-6">
+              <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path>
+              </svg>
+            </div>
+            <h3 class="text-xl font-semibold mb-4">Share Your Story</h3>
+            <p class="text-blue-100 mb-6 leading-relaxed">
+              Help other newcomers by sharing your immigration and settlement experience.
+            </p>
+            <a href="/contact" class="inline-flex items-center bg-white text-blue-600 px-6 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors">
+              Contact Us
+              <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+              </svg>
+            </a>
+          </div>
+
+          <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-8 hover:bg-white/20 transition-all duration-300">
+            <div class="w-16 h-16 bg-white/20 rounded-2xl flex items-center justify-center mb-6">
+              <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
+              </svg>
+            </div>
+            <h3 class="text-xl font-semibold mb-4">Volunteer</h3>
+            <p class="text-blue-100 mb-6 leading-relaxed">
+              Join our team of volunteers helping newcomers with mentorship and support.
+            </p>
+            <a href="/contact" class="inline-flex items-center bg-white text-blue-600 px-6 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors">
+              Get Started
+              <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+              </svg>
+            </a>
+          </div>
+
+          <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-8 hover:bg-white/20 transition-all duration-300">
+            <div class="w-16 h-16 bg-white/20 rounded-2xl flex items-center justify-center mb-6">
+              <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2-2v2m8 0V6a2 2 0 012 2v6a2 2 0 01-2 2H6a2 2 0 01-2-2V8a2 2 0 012-2V6"></path>
+              </svg>
+            </div>
+            <h3 class="text-xl font-semibold mb-4">Partner With Us</h3>
+            <p class="text-blue-100 mb-6 leading-relaxed">
+              Organizations can partner with us to better serve newcomer communities.
+            </p>
+            <a href="/contact" class="inline-flex items-center bg-white text-blue-600 px-6 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors">
+              Learn More
+              <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+</div>
+</BlogLayout>

@@ -1,0 +1,149 @@
+---
+import { getCollection } from 'astro:content';
+import BlogLayout from '../layouts/BlogLayout.astro';
+
+const posts = await getCollection('posts');
+const sortedPosts = posts.sort((a, b) => 
+  new Date(b.data.pubDate).valueOf() - new Date(a.data.pubDate).valueOf()
+);
+---
+
+<BlogLayout 
+  title="Blog - Success Stories & Resources for Newcomers to Canada"
+  description="Read inspiring success stories, immigration tips, and settlement guides from newcomers who have built successful lives in Canada."
+>
+  <div class="py-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <!-- Header -->
+      <div class="text-center mb-12">
+        <h1 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+          Success Stories & Resources
+        </h1>
+        <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+          Real experiences, expert advice, and practical tips from newcomers who have successfully built their lives in Canada.
+        </p>
+      </div>
+
+      <!-- Featured Post -->
+      {sortedPosts.length > 0 && (
+        <div class="mb-16">
+          <h2 class="text-2xl font-bold text-gray-900 mb-6">Featured Story</h2>
+          <div class="bg-gradient-to-r from-blue-600 to-indigo-700 rounded-lg p-8 text-white">
+            <div class="max-w-4xl">
+              <div class="flex items-center mb-4">
+                <span class="bg-yellow-400 text-blue-900 px-3 py-1 rounded-full text-sm font-semibold">
+                  Featured
+                </span>
+                <span class="ml-4 text-blue-100">
+                  {new Date(sortedPosts[0].data.pubDate).toLocaleDateString('en-CA', {
+                    year: 'numeric',
+                    month: 'long',
+                    day: 'numeric'
+                  })}
+                </span>
+              </div>
+              <h3 class="text-3xl font-bold mb-4">{sortedPosts[0].data.title}</h3>
+              <p class="text-xl text-blue-100 mb-6">{sortedPosts[0].data.description}</p>
+              <a 
+                href={`/blog/${sortedPosts[0].slug}`}
+                class="inline-block bg-white text-blue-600 px-6 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors"
+              >
+                Read Full Story
+              </a>
+            </div>
+          </div>
+        </div>
+      )}
+
+      <!-- Blog Posts Grid -->
+      <div class="mb-12">
+        <h2 class="text-2xl font-bold text-gray-900 mb-6">All Stories</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {sortedPosts.map((post) => (
+            <article class="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
+              <div class="p-6">
+                <div class="flex items-center mb-3">
+                  <span class="bg-blue-100 text-blue-800 px-2 py-1 rounded text-sm font-medium">
+                    {post.data.category}
+                  </span>
+                  <span class="ml-3 text-gray-500 text-sm">
+                    {new Date(post.data.pubDate).toLocaleDateString('en-CA', {
+                      month: 'short',
+                      day: 'numeric',
+                      year: 'numeric'
+                    })}
+                  </span>
+                </div>
+                <h3 class="text-xl font-semibold text-gray-900 mb-3 line-clamp-2">
+                  {post.data.title}
+                </h3>
+                <p class="text-gray-600 mb-4 line-clamp-3">
+                  {post.data.description}
+                </p>
+                <div class="flex items-center justify-between">
+                  <a 
+                    href={`/blog/${post.slug}`}
+                    class="text-blue-600 font-medium hover:text-blue-700 transition-colors"
+                  >
+                    Read More →
+                  </a>
+                  <div class="flex items-center text-gray-500 text-sm">
+                    <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                    </svg>
+                    {post.data.readTime || '5'} min read
+                  </div>
+                </div>
+              </div>
+            </article>
+          ))}
+        </div>
+      </div>
+
+      <!-- Categories -->
+      <div class="bg-gray-50 rounded-lg p-8">
+        <h2 class="text-2xl font-bold text-gray-900 mb-6">Browse by Category</h2>
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+          <a href="/blog?category=immigration" class="bg-white p-4 rounded-lg text-center hover:shadow-md transition-shadow">
+            <div class="text-2xl mb-2">🛂</div>
+            <h3 class="font-semibold text-gray-900">Immigration</h3>
+            <p class="text-sm text-gray-600">Visa & permits</p>
+          </a>
+          <a href="/blog?category=settlement" class="bg-white p-4 rounded-lg text-center hover:shadow-md transition-shadow">
+            <div class="text-2xl mb-2">🏠</div>
+            <h3 class="font-semibold text-gray-900">Settlement</h3>
+            <p class="text-sm text-gray-600">Getting started</p>
+          </a>
+          <a href="/blog?category=work" class="bg-white p-4 rounded-lg text-center hover:shadow-md transition-shadow">
+            <div class="text-2xl mb-2">💼</div>
+            <h3 class="font-semibold text-gray-900">Work & Career</h3>
+            <p class="text-sm text-gray-600">Job search tips</p>
+          </a>
+          <a href="/blog?category=community" class="bg-white p-4 rounded-lg text-center hover:shadow-md transition-shadow">
+            <div class="text-2xl mb-2">🤝</div>
+            <h3 class="font-semibold text-gray-900">Community</h3>
+            <p class="text-sm text-gray-600">Building connections</p>
+          </a>
+        </div>
+      </div>
+
+      <!-- Newsletter Signup -->
+      <div class="mt-16 bg-blue-600 rounded-lg p-8 text-white text-center">
+        <h2 class="text-2xl font-bold mb-4">Stay Updated</h2>
+        <p class="text-blue-100 mb-6 max-w-2xl mx-auto">
+          Get the latest success stories, immigration updates, and settlement tips delivered to your inbox.
+        </p>
+        <div class="max-w-md mx-auto flex gap-2">
+          <input 
+            type="email" 
+            placeholder="Enter your email" 
+            class="flex-1 px-4 py-2 rounded-lg text-gray-900 focus:outline-none focus:ring-2 focus:ring-yellow-400"
+          />
+          <button class="bg-yellow-400 text-blue-900 px-6 py-2 rounded-lg font-semibold hover:bg-yellow-300 transition-colors">
+            Subscribe
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</BlogLayout>

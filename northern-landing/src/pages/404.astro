@@ -1,0 +1,155 @@
+---
+import BlogLayout from '../layouts/BlogLayout.astro';
+---
+
+<BlogLayout 
+  title="Page Not Found - Northern Landing"
+  description="The page you're looking for doesn't exist. Return to Northern Landing to continue your journey to Canada."
+>
+  <div class="min-h-screen flex items-center justify-center bg-gray-50">
+    <div class="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <!-- 404 Illustration -->
+      <div class="mb-8">
+        <div class="w-32 h-32 mx-auto mb-6 bg-blue-100 rounded-full flex items-center justify-center">
+          <svg class="w-16 h-16 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9.172 16.172a4 4 0 015.656 0M9 12h6m-6-4h6m2 5.291A7.962 7.962 0 0112 15c-2.34 0-4.29-1.009-5.824-2.709M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+          </svg>
+        </div>
+      </div>
+
+      <!-- Error Message -->
+      <div class="mb-8">
+        <h1 class="text-6xl font-bold text-gray-900 mb-4">404</h1>
+        <h2 class="text-2xl font-semibold text-gray-700 mb-4">Page Not Found</h2>
+        <p class="text-lg text-gray-600 mb-6">
+          Sorry, we couldn't find the page you're looking for. It might have been moved, deleted, or the URL might be incorrect.
+        </p>
+      </div>
+
+      <!-- Helpful Links -->
+      <div class="bg-white rounded-lg shadow-lg p-8 mb-8">
+        <h3 class="text-xl font-semibold text-gray-900 mb-6">Here are some helpful links:</h3>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <a 
+            href="/" 
+            class="flex items-center p-4 bg-blue-50 rounded-lg hover:bg-blue-100 transition-colors group"
+          >
+            <div class="w-10 h-10 bg-blue-600 rounded-lg flex items-center justify-center mr-4 group-hover:bg-blue-700 transition-colors">
+              <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path>
+              </svg>
+            </div>
+            <div class="text-left">
+              <div class="font-medium text-gray-900">Home</div>
+              <div class="text-sm text-gray-600">Return to our homepage</div>
+            </div>
+          </a>
+
+          <a 
+            href="/blog" 
+            class="flex items-center p-4 bg-green-50 rounded-lg hover:bg-green-100 transition-colors group"
+          >
+            <div class="w-10 h-10 bg-green-600 rounded-lg flex items-center justify-center mr-4 group-hover:bg-green-700 transition-colors">
+              <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z"></path>
+              </svg>
+            </div>
+            <div class="text-left">
+              <div class="font-medium text-gray-900">Blog</div>
+              <div class="text-sm text-gray-600">Read success stories & guides</div>
+            </div>
+          </a>
+
+          <a 
+            href="/about" 
+            class="flex items-center p-4 bg-purple-50 rounded-lg hover:bg-purple-100 transition-colors group"
+          >
+            <div class="w-10 h-10 bg-purple-600 rounded-lg flex items-center justify-center mr-4 group-hover:bg-purple-700 transition-colors">
+              <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+              </svg>
+            </div>
+            <div class="text-left">
+              <div class="font-medium text-gray-900">About Us</div>
+              <div class="text-sm text-gray-600">Learn about our mission</div>
+            </div>
+          </a>
+
+          <a 
+            href="/contact" 
+            class="flex items-center p-4 bg-yellow-50 rounded-lg hover:bg-yellow-100 transition-colors group"
+          >
+            <div class="w-10 h-10 bg-yellow-600 rounded-lg flex items-center justify-center mr-4 group-hover:bg-yellow-700 transition-colors">
+              <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+              </svg>
+            </div>
+            <div class="text-left">
+              <div class="font-medium text-gray-900">Contact</div>
+              <div class="text-sm text-gray-600">Get in touch with us</div>
+            </div>
+          </a>
+        </div>
+      </div>
+
+      <!-- Search Suggestion -->
+      <div class="bg-gray-100 rounded-lg p-6 mb-8">
+        <h3 class="text-lg font-semibold text-gray-900 mb-4">Looking for something specific?</h3>
+        <p class="text-gray-600 mb-4">
+          Try searching for immigration guides, settlement tips, or success stories.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-3">
+          <a 
+            href="/blog?category=immigration" 
+            class="inline-flex items-center px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+          >
+            <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+            </svg>
+            Immigration Guides
+          </a>
+          <a 
+            href="/blog?category=settlement" 
+            class="inline-flex items-center px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors"
+          >
+            <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+            </svg>
+            Settlement Tips
+          </a>
+          <a 
+            href="/blog?category=success-story" 
+            class="inline-flex items-center px-4 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition-colors"
+          >
+            <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+            </svg>
+            Success Stories
+          </a>
+        </div>
+      </div>
+
+      <!-- Back Button -->
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <button 
+          onclick="history.back()" 
+          class="inline-flex items-center px-6 py-3 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors"
+        >
+          <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
+          </svg>
+          Go Back
+        </button>
+        <a 
+          href="/" 
+          class="inline-flex items-center px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+        >
+          <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path>
+          </svg>
+          Go Home
+        </a>
+      </div>
+    </div>
+  </div>
+</BlogLayout>
