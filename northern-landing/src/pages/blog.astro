@@ -57,7 +57,7 @@ const sortedPosts = posts.sort((a, b) =>
 
       <!-- Blog Posts Grid -->
       <div class="mb-12">
-        <h2 class="text-2xl font-bold text-gray-900 mb-6">All Stories</h2>
+        <h2 class="text-5xl font-bold text-gray-900 mb-6">All Stories</h2>
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {sortedPosts.map((post) => (
             <article class="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
@@ -128,18 +128,18 @@ const sortedPosts = posts.sort((a, b) =>
       </div>
 
       <!-- Newsletter Signup -->
-      <div class="mt-16 bg-blue-600 rounded-lg p-8 text-white text-center">
+      <div class="mt-16 bg-blue-900 rounded-lg p-8 text-white text-center">
         <h2 class="text-2xl font-bold mb-4">Stay Updated</h2>
         <p class="text-blue-100 mb-6 max-w-2xl mx-auto">
           Get the latest success stories, immigration updates, and settlement tips delivered to your inbox.
         </p>
-        <div class="max-w-md mx-auto flex gap-2">
+        <div class="max-w-md mx-auto flex flex-col sm:flex-row gap-4">
           <input 
             type="email" 
             placeholder="Enter your email" 
-            class="flex-1 px-4 py-2 rounded-lg text-gray-900 focus:outline-none focus:ring-2 focus:ring-yellow-400"
+            class="flex-1 px-4 py-4 rounded-lg text-gray-900 focus:outline-none focus:ring-2 focus:ring-yellow-400"
           />
-          <button class="bg-yellow-400 text-blue-900 px-6 py-2 rounded-lg font-semibold hover:bg-yellow-300 transition-colors">
+          <button class="w-full sm:w-auto bg-yellow-400 text-blue-900 px-6 py-4 rounded-lg font-semibold hover:bg-yellow-300 transition-colors">
             Subscribe
           </button>
         </div>

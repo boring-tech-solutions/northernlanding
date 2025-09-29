@@ -6,7 +6,7 @@ category: "success-story"
 tags: ["immigration", "settlement", "tech", "toronto"]
 readTime: "8"
 featured: true
-author: "Priya Sharma"
+author: "Priyanka Sharmah"
 ---
 
 # From Mumbai to Toronto: My First 6 Months in Canada

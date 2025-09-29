@@ -6,7 +6,7 @@ const posts = defineCollection({
     title: z.string(),
     description: z.string(),
     pubDate: z.coerce.date(),
-    category: z.enum(['immigration', 'settlement', 'work', 'community', 'success-story', 'resources']),
+    category: z.enum(['immigration', 'settlement', 'work', 'community', 'success-story', 'resources', 'healthcare', 'culture']),
     tags: z.array(z.string()).optional(),
     readTime: z.string().optional(),
     featured: z.boolean().optional(),

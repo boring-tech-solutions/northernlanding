@@ -2,10 +2,10 @@
 title: "How to Find Work in Canada: A Newcomer's Guide to the Canadian Job Market"
 description: "Complete guide to finding employment in Canada, including networking strategies, resume tips, interview preparation, and understanding Canadian workplace culture."
 pubDate: 2024-01-01
-category: "work"
+category: "resources"
 tags: ["job-search", "employment", "networking", "resume", "interview"]
 readTime: "15"
-author: "Career Services Team"
+author: "Northern Landing Content Team"
 ---
 
 # How to Find Work in Canada: A Newcomer's Guide to the Canadian Job Market
