@@ -3,219 +3,365 @@ import { getCollection } from 'astro:content';
 import BlogLayout from '../layouts/BlogLayout.astro';
 
 const posts = await getCollection('posts');
-const sortedPosts = posts.sort((a, b) => 
+const sortedPosts = posts.sort((a, b) =>
   new Date(b.data.pubDate).valueOf() - new Date(a.data.pubDate).valueOf()
 );
 const featuredPosts = sortedPosts.slice(0, 3);
-const recentPosts = sortedPosts.slice(0, 6);
+
+const categories = [
+  { num: '01', title: 'Housing & Rentals', desc: 'Find your first apartment, understand rental agreements, and navigate the Canadian housing market with confidence.' },
+  { num: '02', title: 'Jobs & Careers', desc: 'Discover how to get your credentials recognized, build a Canadian resume, and land your first job.' },
+  { num: '03', title: 'Healthcare', desc: 'Learn how to register for provincial health coverage, find a family doctor, and access medical services.' },
+  { num: '04', title: 'Language & Education', desc: 'Access free language classes, ESL programs, and educational pathways for you and your family.' },
+  { num: '05', title: 'Banking & Money', desc: 'Open your first Canadian bank account, build credit history, and manage your finances effectively.' },
+  { num: '06', title: 'Community & Culture', desc: 'Connect with cultural associations, community events, and people who share your background.' },
+];
+
+const quizFeatures = ['400+ practice questions', 'Real exam format', 'Progress tracking'];
+
+const quizChoices = [
+  { letter: 'A', text: 'Monarchy without representation', selected: false },
+  { letter: 'B', text: 'Rule of law and equal rights', selected: true },
+  { letter: 'C', text: 'Single-party governance', selected: false },
+  { letter: 'D', text: 'Regional autonomy only', selected: false },
+];
+
+const placeholderStories = [
+  { cat: 'Housing', title: 'Finding My First Apartment in Toronto as a Newcomer', excerpt: 'What nobody tells you about the rental market — and how I finally landed a place in six weeks.' },
+  { cat: 'Jobs & Careers', title: 'Getting My Engineering Credentials Recognized in Canada', excerpt: 'A step-by-step account of the credential recognition process from someone who lived it.' },
+  { cat: 'Community', title: 'Building a Support Network When You Know Nobody', excerpt: "From showing up alone to finding a community that felt like home — here's what worked." },
+];
+
+const storyImageMap: Record<string, { src: string; alt: string }> = {
+  'driving-ettiquette': { src: '/images/story-driving.jpg', alt: 'Car driving on a snowy road in Canada' },
+  'potlucks': { src: '/images/story-food.jpg', alt: 'Multicultural grocery store with fresh produce' },
+  'renting-in-canada': { src: '/images/story-housing.jpg', alt: 'Apartment building available for rent' },
+};
+
+const placeholderStoryImages = [
+  { src: '/images/story-housing.jpg', alt: 'Apartment building available for rent in Canada' },
+  { src: '/images/hero-community.jpg', alt: 'Newcomers navigating careers in Canada' },
+  { src: '/images/story-food.jpg', alt: 'Community gathering and cultural connection' },
+];
 ---
 
-<BlogLayout 
+<BlogLayout
   title="Northern Landing - Your Journey to Canada Starts Here"
   description="Welcome to Northern Landing, your comprehensive resource hub for newcomers to Canada. Discover success stories, immigration guides, settlement tips, and community support to help you build your new life in Canada."
 >
-  <!-- Hero Section -->
-  <section class="relative bg-gradient-to-br from-blue-800 via-blue-600 to-indigo-900 text-white py-20">
-    <div class="absolute inset-0 bg-black/20"></div>
-    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center">
-        <h1 class="text-4xl md:text-6xl font-bold mb-6">
-          Welcome to <span class="text-red-500">Canada</span>
-        </h1>
-        <p class="text-xl md:text-2xl mb-8 py-4 text-blue-100 max-w-3xl mx-auto">
-          Your comprehensive resource hub for immigration, settlement, and building a new life in Canada. 
-          Real stories, expert guidance, and community support.
-        </p>
-        <div class="flex flex-col sm:flex-row gap-4 md:gap-12 justify-center">
-          <a href="/blog" class="bg-yellow-400 text-blue-900 px-8 py-5 rounded-lg text-xl font-semibold hover:bg-yellow-900 transition-colors">
-            Read Success Stories
-          </a>
-          <a href="/about" class="border-2 border-white text-white px-8 py-5 rounded-lg text-xl font-semibold hover:bg-white hover:text-blue-900 transition-colors">
-            Learn About Us
-          </a>
+
+  <!-- ============================================================ -->
+  <!-- HERO SECTION                                                   -->
+  <!-- ============================================================ -->
+  <section class="relative bg-[#0B0B0B] overflow-hidden">
+    <!-- Cyan blob -->
+    <div
+      class="absolute right-0 top-1/2 -translate-y-1/2 w-[520px] h-[520px] rounded-full opacity-80 pointer-events-none"
+      style="background: radial-gradient(circle, #00D9D9 0%, #00B5B5 50%, transparent 80%); transform: translate(40%, -50%);"
+      aria-hidden="true"
+    ></div>
+
+    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 lg:py-32">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+        <!-- Left: text -->
+        <div>
+          <!-- Eyebrow -->
+          <div class="flex items-center gap-3 mb-6">
+            <span class="block w-8 h-0.5 bg-[#CC2936]"></span>
+            <span class="text-[#CC2936] text-xs font-semibold uppercase tracking-widest">New to Canada &middot; Start Here</span>
+          </div>
+
+          <h1 class="text-5xl lg:text-6xl font-black text-white leading-tight mb-6 tracking-tight">
+            Welcome to <span class="text-[#CC2936]">Canada.</span><br />
+            Let&rsquo;s build your<br />new home.
+          </h1>
+
+          <p class="text-gray-400 text-lg leading-relaxed mb-10 max-w-lg">
+            Northern Landing is a free, community-built resource hub that helps newcomers navigate housing, jobs, healthcare, and more &mdash; so you can focus on building your life.
+          </p>
+
+          <div class="flex flex-col sm:flex-row gap-4 mb-14">
+            <a
+              href="/blog"
+              class="inline-flex items-center justify-center gap-2 bg-[#CC2936] text-white px-7 py-3 rounded-lg font-semibold text-sm hover:bg-red-800 transition-colors"
+            >
+              Explore Resources &rarr;
+            </a>
+            <a
+              href="/blog?category=success-story"
+              class="inline-flex items-center justify-center gap-2 border border-gray-600 text-white px-7 py-3 rounded-lg font-semibold text-sm hover:bg-white hover:bg-opacity-10 transition-colors"
+            >
+              Read Success Stories
+            </a>
+          </div>
+
+          <!-- Stat bar -->
+          <div class="flex flex-col sm:flex-row gap-6 sm:gap-0">
+            <div class="sm:pr-8 sm:border-r sm:border-gray-700">
+              <p class="text-2xl font-black text-gray-200">12,000+</p>
+              <p class="text-gray-500 text-xs mt-0.5">Newcomers guided</p>
+            </div>
+            <div class="sm:px-8 sm:border-r sm:border-gray-700">
+              <p class="text-2xl font-black text-gray-200">200+</p>
+              <p class="text-gray-500 text-xs mt-0.5">Vetted resources</p>
+            </div>
+            <div class="sm:pl-8">
+              <p class="text-2xl font-black text-gray-200">Free</p>
+              <p class="text-gray-500 text-xs mt-0.5">Always, for everyone</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right: hero image -->
+        <div class="hidden lg:block">
+          <div class="rounded-2xl overflow-hidden shadow-2xl aspect-[4/5] lg:max-w-sm xl:max-w-md">
+            <img src="/images/hero-community.jpg" alt="Newcomers building community in Canada" class="w-full h-full object-cover" />
+          </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Featured Stories Section -->
-  <section class="py-16 bg-white">
+  <!-- ============================================================ -->
+  <!-- START HERE SECTION                                             -->
+  <!-- ============================================================ -->
+  <section class="bg-white py-24">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center mb-12">
-        <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Featured Success Stories</h2>
-        <p class="text-xl text-gray-600">Real experiences from newcomers who have built successful lives in Canada</p>
+      <!-- Section header -->
+      <div class="mb-14">
+        <div class="flex items-center gap-3 mb-4">
+          <span class="block w-8 h-0.5 bg-[#CC2936]"></span>
+          <span class="text-[#CC2936] text-xs font-semibold uppercase tracking-widest">Start Here</span>
+        </div>
+        <h2 class="text-4xl lg:text-5xl font-black text-[#1A1A1A] leading-tight tracking-tight mb-4">
+          Everything you need,<br />organized by what matters first.
+        </h2>
+        <p class="text-[#555555] text-lg max-w-2xl">
+          We&rsquo;ve curated the most important resources for newcomers and organized them into six essential categories so you know exactly where to start.
+        </p>
       </div>
-      
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-        {featuredPosts.map((post) => (
-          <article class="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
-            <div class="p-6">
-              <div class="flex items-center mb-3">
-                <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm font-medium">
-                  {post.data.category}
-                </span>
-                <span class="ml-3 text-gray-500 text-sm">
-                  {new Date(post.data.pubDate).toLocaleDateString('en-CA', {
-                    month: 'short',
-                    day: 'numeric',
-                    year: 'numeric'
-                  })}
-                </span>
-              </div>
-              <h3 class="text-xl font-semibold text-gray-900 mb-3 line-clamp-2">
-                {post.data.title}
-              </h3>
-              <p class="text-gray-600 mb-4 line-clamp-3">
-                {post.data.description}
-              </p>
-              <div class="flex items-center justify-between">
-                <a 
-                  href={`/blog/${post.slug}`}
-                  class="text-blue-600 font-medium hover:text-blue-700 transition-colors"
-                >
-                  Read Full Story →
-                </a>
-                <div class="flex items-center text-gray-500 text-sm">
-                  <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+
+      <!-- 6 category cards -->
+      <div class="space-y-4">
+        {categories.map((item) => (
+          <div class="flex items-start gap-6 p-6 rounded-xl border border-[#E5E5E5] hover:shadow-sm transition-all group">
+            <span class="bg-red-50 text-[#CC2936] font-mono text-sm font-bold px-3 py-2 rounded-lg inline-block flex-shrink-0">
+              {item.num}
+            </span>
+            <div class="flex-1 min-w-0">
+              <h3 class="text-[#1A1A1A] font-bold text-lg mb-1">{item.title}</h3>
+              <p class="text-[#555555] text-sm leading-relaxed">{item.desc}</p>
+            </div>
+            <a
+              href="/blog"
+              class="text-[#CC2936] text-sm font-semibold flex-shrink-0 hidden sm:block"
+            >
+              Explore &rarr;
+            </a>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================ -->
+  <!-- QUIZAPP CTA SECTION                                            -->
+  <!-- ============================================================ -->
+  <section class="bg-[#0B0B0B] py-24">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+        <!-- Left: text -->
+        <div>
+          <div class="flex items-center gap-3 mb-6">
+            <span class="block w-8 h-0.5 bg-[#CC2936]"></span>
+            <span class="text-[#CC2936] text-xs font-semibold uppercase tracking-widest">Citizenship Test Prep</span>
+          </div>
+
+          <h2 class="text-4xl lg:text-5xl font-black text-white leading-tight tracking-tight mb-5">
+            Ready to become a citizen?<br />
+            Practice with<br />
+            <span class="text-[#CC2936]">QuizApp.</span>
+          </h2>
+
+          <p class="text-gray-400 text-base leading-relaxed mb-8">
+            Our free citizenship test prep tool covers every topic on the official exam. Practice at your own pace, track your progress, and walk into the test room confident.
+          </p>
+
+          <!-- Feature checkmarks -->
+          <ul class="space-y-3 mb-10">
+            {quizFeatures.map((feature) => (
+              <li class="flex items-center gap-3 text-gray-300 text-sm">
+                <span class="w-5 h-5 rounded-full flex items-center justify-center flex-shrink-0" style="background: rgba(204,41,54,0.15); border: 1px solid rgba(204,41,54,0.4);">
+                  <svg class="w-3 h-3 text-[#CC2936]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/>
                   </svg>
-                  {post.data.readTime || '5'} min read
+                </span>
+                {feature}
+              </li>
+            ))}
+          </ul>
+
+          <div class="flex flex-col sm:flex-row gap-4">
+            <a
+              href="https://quizapp.ca"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="inline-flex items-center justify-center gap-2 bg-[#CC2936] text-white px-7 py-3 rounded-lg font-semibold text-sm hover:bg-red-800 transition-colors"
+            >
+              Try QuizApp &rarr;
+            </a>
+            <a
+              href="https://quizapp.ca"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="inline-flex items-center justify-center gap-2 border border-gray-700 text-gray-300 px-7 py-3 rounded-lg font-semibold text-sm hover:border-gray-500 hover:text-white transition-colors"
+            >
+              Take a free practice test
+            </a>
+          </div>
+        </div>
+
+        <!-- Right: mock quiz card -->
+        <div class="flex justify-center lg:justify-end">
+          <div class="bg-white rounded-2xl shadow-2xl p-7 w-full max-w-sm">
+            <div class="flex items-center justify-between mb-5">
+              <span class="text-xs font-bold uppercase tracking-widest text-gray-500">Practice Test</span>
+              <span class="text-xs font-mono text-gray-500">12 / 20</span>
+            </div>
+
+            <!-- Progress bar -->
+            <div class="w-full h-1.5 bg-gray-100 rounded-full mb-6 overflow-hidden">
+              <div class="h-full bg-[#CC2936] rounded-full" style="width: 60%"></div>
+            </div>
+
+            <p class="text-[#1A1A1A] font-semibold text-sm leading-snug mb-5">
+              Which of the following is a core principle of Canadian democracy?
+            </p>
+
+            <!-- Answer choices -->
+            <div class="space-y-2">
+              {quizChoices.map((choice) => (
+                <div
+                  class={choice.selected
+                    ? "flex items-center gap-3 px-4 py-2 rounded-lg border text-sm border-[#CC2936] bg-red-50 text-[#CC2936] font-semibold"
+                    : "flex items-center gap-3 px-4 py-2 rounded-lg border text-sm border-gray-200 text-gray-600"}
+                >
+                  <span
+                    class={choice.selected
+                      ? "w-6 h-6 rounded flex items-center justify-center text-xs font-bold flex-shrink-0 bg-[#CC2936] text-white"
+                      : "w-6 h-6 rounded flex items-center justify-center text-xs font-bold flex-shrink-0 bg-gray-100 text-gray-500"}
+                  >
+                    {choice.letter}
+                  </span>
+                  {choice.text}
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================ -->
+  <!-- FEATURED STORIES SECTION                                       -->
+  <!-- ============================================================ -->
+  <section class="bg-[#F9F7F4] py-24">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <!-- Section header -->
+      <div class="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-6 mb-14">
+        <div>
+          <div class="flex items-center gap-3 mb-4">
+            <span class="block w-8 h-0.5 bg-[#CC2936]"></span>
+            <span class="text-[#CC2936] text-xs font-semibold uppercase tracking-widest">Featured Stories</span>
+          </div>
+          <h2 class="text-4xl lg:text-5xl font-black text-[#1A1A1A] leading-tight tracking-tight mb-3">
+            Real journeys,<br />honestly told.
+          </h2>
+          <p class="text-[#555555] text-base max-w-xl">
+            Stories from newcomers across Canada &mdash; unfiltered, first-person accounts of finding your footing in a new country.
+          </p>
+        </div>
+        <a
+          href="/blog"
+          class="inline-flex items-center gap-2 border border-gray-300 text-[#1A1A1A] px-6 py-2 rounded-lg text-sm font-semibold hover:border-[#CC2936] hover:text-[#CC2936] transition-colors self-start sm:self-auto flex-shrink-0"
+        >
+          View all stories &rarr;
+        </a>
+      </div>
+
+      <!-- Story cards from CMS -->
+      {featuredPosts.length > 0 && (
+        <div class="space-y-8">
+          {featuredPosts.map((post) => {
+            const storyImg = storyImageMap[post.slug] ?? { src: '/images/hero-community.jpg', alt: 'Story from a Canadian newcomer' };
+            return (
+            <article class="bg-white rounded-2xl border border-[#E5E5E5] overflow-hidden hover:shadow-md transition-shadow">
+              <div class="grid grid-cols-1 md:grid-cols-5 gap-0">
+                <!-- Story thumbnail -->
+                <div class="md:col-span-2 rounded-xl overflow-hidden aspect-[16/10]">
+                  <img src={storyImg.src} alt={storyImg.alt} class="w-full h-full object-cover" />
+                </div>
+                <!-- Content -->
+                <div class="md:col-span-3 p-7 flex flex-col justify-between">
+                  <div>
+                    <div class="flex items-center gap-3 mb-3">
+                      <span class="bg-red-50 text-[#CC2936] text-xs font-medium px-3 py-1 rounded-full">
+                        {post.data.category}
+                      </span>
+                      <span class="text-gray-400 text-xs">
+                        {new Date(post.data.pubDate).toLocaleDateString('en-CA', {
+                          month: 'short',
+                          day: 'numeric',
+                          year: 'numeric'
+                        })}
+                      </span>
+                    </div>
+                    <h3 class="text-[#1A1A1A] font-bold text-xl mb-2 line-clamp-2">{post.data.title}</h3>
+                    <p class="text-[#555555] text-sm leading-relaxed line-clamp-3 mb-5">{post.data.description}</p>
+                  </div>
+                  <a
+                    href={`/blog/${post.slug}`}
+                    class="text-[#1A1A1A] text-sm font-mono font-semibold hover:text-[#CC2936] transition-colors self-start"
+                  >
+                    Read story &rarr;
+                  </a>
                 </div>
               </div>
-            </div>
-          </article>
-        ))}
-      </div>
-      
-      <div class="text-center mt-8">
-        <a href="/blog" class="bg-blue-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-blue-700 transition-colors">
-          View All Stories
-        </a>
-      </div>
-    </div>
-  </section>
-
-  <!-- Quick Access Section -->
-  <section class="py-16 bg-gray-50">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center mb-12">
-        <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Quick Access</h2>
-        <p class="text-xl text-gray-600">Everything you need to know about starting your Canadian journey</p>
-      </div>
-      
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
-        <div class="bg-white rounded-lg shadow-lg p-8">
-          <h3 class="text-2xl font-bold text-gray-900 mb-4">📋 Immigration & Settlement</h3>
-          <ul class="space-y-3 text-gray-600">
-            <li class="flex items-start">
-              <span class="text-green-500 mr-2">✓</span>
-              Step-by-step immigration guides
-            </li>
-            <li class="flex items-start">
-              <span class="text-green-500 mr-2">✓</span>
-              Settlement services and resources
-            </li>
-            <li class="flex items-start">
-              <span class="text-green-500 mr-2">✓</span>
-              Work permit and visa information
-            </li>
-            <li class="flex items-start">
-              <span class="text-green-500 mr-2">✓</span>
-              Permanent residence pathways
-            </li>
-          </ul>
-          <a href="/blog?category=immigration" class="inline-block mt-6 bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition-colors">
-            Explore Immigration Guides
-          </a>
+            </article>
+            );
+          })}
         </div>
-        
-        <div class="bg-white rounded-lg shadow-lg p-8">
-          <h3 class="text-2xl font-bold text-gray-900 mb-4">🏠 Living in Canada</h3>
-          <ul class="space-y-3 text-gray-600">
-            <li class="flex items-start">
-              <span class="text-green-500 mr-2">✓</span>
-              Housing and accommodation tips
-            </li>
-            <li class="flex items-start">
-              <span class="text-green-500 mr-2">✓</span>
-              Healthcare system guide
-            </li>
-            <li class="flex items-start">
-              <span class="text-green-500 mr-2">✓</span>
-              Education and schools
-            </li>
-            <li class="flex items-start">
-              <span class="text-green-500 mr-2">✓</span>
-              Banking and financial services
-            </li>
-          </ul>
-          <a href="/blog?category=settlement" class="inline-block mt-6 bg-green-600 text-white px-6 py-2 rounded-lg hover:bg-green-700 transition-colors">
-            Read Settlement Tips
-          </a>
+      )}
+
+      <!-- Placeholder story cards when no CMS posts -->
+      {featuredPosts.length === 0 && (
+        <div class="space-y-8">
+          {placeholderStories.map((item, i) => (
+            <article class="bg-white rounded-2xl border border-[#E5E5E5] overflow-hidden hover:shadow-md transition-shadow">
+              <div class="grid grid-cols-1 md:grid-cols-5 gap-0">
+                <div class="md:col-span-2 rounded-xl overflow-hidden aspect-[16/10]">
+                  <img src={placeholderStoryImages[i].src} alt={placeholderStoryImages[i].alt} class="w-full h-full object-cover" />
+                </div>
+                <div class="md:col-span-3 p-7 flex flex-col justify-between">
+                  <div>
+                    <div class="flex items-center gap-3 mb-3">
+                      <span class="bg-red-50 text-[#CC2936] text-xs font-medium px-3 py-1 rounded-full">{item.cat}</span>
+                      <span class="text-gray-400 text-xs">Jan 15, 2026</span>
+                    </div>
+                    <h3 class="text-[#1A1A1A] font-bold text-xl mb-2">{item.title}</h3>
+                    <p class="text-[#555555] text-sm leading-relaxed mb-5">{item.excerpt}</p>
+                  </div>
+                  <a href="/blog" class="text-[#1A1A1A] text-sm font-mono font-semibold hover:text-[#CC2936] transition-colors self-start">
+                    Read story &rarr;
+                  </a>
+                </div>
+              </div>
+            </article>
+          ))}
         </div>
-      </div>
+      )}
     </div>
   </section>
 
-  <!-- Recent Posts Section -->
-  <section class="py-16 bg-white">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center mb-12">
-        <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Latest Resources</h2>
-        <p class="text-xl text-gray-600">Stay updated with our newest guides and success stories</p>
-      </div>
-      
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        {recentPosts.map((post) => (
-          <article class="bg-gray-50 rounded-lg p-6 hover:shadow-lg transition-shadow">
-            <div class="flex items-center mb-3">
-              <span class="bg-blue-100 text-blue-800 px-2 py-1 rounded text-sm font-medium">
-                {post.data.category}
-              </span>
-              <span class="ml-3 text-gray-500 text-sm">
-                {new Date(post.data.pubDate).toLocaleDateString('en-CA', {
-                  month: 'short',
-                  day: 'numeric'
-                })}
-              </span>
-            </div>
-            <h3 class="text-lg font-semibold text-gray-900 mb-3 line-clamp-2">
-              {post.data.title}
-            </h3>
-            <p class="text-gray-600 mb-4 line-clamp-2 text-sm">
-              {post.data.description}
-            </p>
-            <a 
-              href={`/blog/${post.slug}`}
-              class="text-blue-600 font-medium hover:text-blue-700 transition-colors text-sm"
-            >
-              Read More →
-            </a>
-          </article>
-        ))}
-      </div>
-    </div>
-  </section>
-
-  <!-- Call to Action -->
-  <section class="py-16 bg-gradient-to-r from-blue-600 to-indigo-700 text-white">
-    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-      <h2 class="text-3xl md:text-4xl font-bold mb-4">Ready to Start Your Canadian Journey?</h2>
-      <p class="text-xl mb-8 text-blue-100">
-        Join thousands of newcomers who have found success, community, and a new home in Canada. 
-        Your story starts here.
-      </p>
-      <div class="flex flex-col sm:flex-row gap-4 justify-center">
-        <a href="/blog" class="bg-white text-blue-600 px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors">
-          Read Success Stories
-        </a>
-        <a href="/about" class="border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-blue-600 transition-colors">
-          Learn About Us
-        </a>
-        <a href="/contact" class="bg-yellow-400 text-blue-900 px-8 py-3 rounded-lg font-semibold hover:bg-yellow-300 transition-colors">
-          Contact Us
-        </a>
-      </div>
-    </div>
-  </section>
 </BlogLayout>
