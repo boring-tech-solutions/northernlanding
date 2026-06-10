@@ -31,6 +31,18 @@ const placeholderStories = [
   { cat: 'Jobs & Careers', title: 'Getting My Engineering Credentials Recognized in Canada', excerpt: 'A step-by-step account of the credential recognition process from someone who lived it.' },
   { cat: 'Community', title: 'Building a Support Network When You Know Nobody', excerpt: "From showing up alone to finding a community that felt like home — here's what worked." },
 ];
+
+const storyImageMap: Record<string, { src: string; alt: string }> = {
+  'driving-ettiquette': { src: '/images/story-driving.jpg', alt: 'Car driving on a snowy road in Canada' },
+  'potlucks': { src: '/images/story-food.jpg', alt: 'Multicultural grocery store with fresh produce' },
+  'renting-in-canada': { src: '/images/story-housing.jpg', alt: 'Apartment building available for rent' },
+};
+
+const placeholderStoryImages = [
+  { src: '/images/story-housing.jpg', alt: 'Apartment building available for rent in Canada' },
+  { src: '/images/hero-community.jpg', alt: 'Newcomers navigating careers in Canada' },
+  { src: '/images/story-food.jpg', alt: 'Community gathering and cultural connection' },
+];
 ---
 
 <BlogLayout
@@ -100,15 +112,10 @@ const placeholderStories = [
           </div>
         </div>
 
-        <!-- Right: image placeholder -->
+        <!-- Right: hero image -->
         <div class="hidden lg:block">
-          <div
-            class="w-full rounded-2xl overflow-hidden flex items-center justify-center"
-            style="aspect-ratio: 4/5; background: repeating-linear-gradient(135deg, #E8EDF0 0px, #E8EDF0 1px, #F0F4F7 1px, #F0F4F7 20px);"
-          >
-            <span class="border border-gray-400 text-gray-500 text-xs font-mono px-4 py-1 rounded-full" style="background: rgba(255,255,255,0.6);">
-              newcomer / community photo &mdash; 4:5
-            </span>
+          <div class="rounded-2xl overflow-hidden shadow-2xl aspect-[4/5] lg:max-w-sm xl:max-w-md">
+            <img src="/images/hero-community.jpg" alt="Newcomers building community in Canada" class="w-full h-full object-cover" />
           </div>
         </div>
       </div>
@@ -196,13 +203,17 @@ const placeholderStories = [
 
           <div class="flex flex-col sm:flex-row gap-4">
             <a
-              href="#"
+              href="https://quizapp.ca"
+              target="_blank"
+              rel="noopener noreferrer"
               class="inline-flex items-center justify-center gap-2 bg-[#CC2936] text-white px-7 py-3 rounded-lg font-semibold text-sm hover:bg-red-800 transition-colors"
             >
               Try QuizApp &rarr;
             </a>
             <a
-              href="#"
+              href="https://quizapp.ca"
+              target="_blank"
+              rel="noopener noreferrer"
               class="inline-flex items-center justify-center gap-2 border border-gray-700 text-gray-300 px-7 py-3 rounded-lg font-semibold text-sm hover:border-gray-500 hover:text-white transition-colors"
             >
               Take a free practice test
@@ -282,17 +293,14 @@ const placeholderStories = [
       <!-- Story cards from CMS -->
       {featuredPosts.length > 0 && (
         <div class="space-y-8">
-          {featuredPosts.map((post) => (
+          {featuredPosts.map((post) => {
+            const storyImg = storyImageMap[post.slug] ?? { src: '/images/hero-community.jpg', alt: 'Story from a Canadian newcomer' };
+            return (
             <article class="bg-white rounded-2xl border border-[#E5E5E5] overflow-hidden hover:shadow-md transition-shadow">
               <div class="grid grid-cols-1 md:grid-cols-5 gap-0">
-                <!-- Image placeholder -->
-                <div
-                  class="md:col-span-2 min-h-48 flex items-center justify-center"
-                  style="background: repeating-linear-gradient(135deg, #E8EDF0 0px, #E8EDF0 1px, #F0F4F7 1px, #F0F4F7 20px);"
-                >
-                  <span class="border border-gray-400 text-gray-500 text-xs font-mono px-3 py-1 rounded-full" style="background: rgba(255,255,255,0.6);">
-                    story photo &mdash; 16:10
-                  </span>
+                <!-- Story thumbnail -->
+                <div class="md:col-span-2 rounded-xl overflow-hidden aspect-[16/10]">
+                  <img src={storyImg.src} alt={storyImg.alt} class="w-full h-full object-cover" />
                 </div>
                 <!-- Content -->
                 <div class="md:col-span-3 p-7 flex flex-col justify-between">
@@ -321,23 +329,19 @@ const placeholderStories = [
                 </div>
               </div>
             </article>
-          ))}
+            );
+          })}
         </div>
       )}
 
       <!-- Placeholder story cards when no CMS posts -->
       {featuredPosts.length === 0 && (
         <div class="space-y-8">
-          {placeholderStories.map((item) => (
+          {placeholderStories.map((item, i) => (
             <article class="bg-white rounded-2xl border border-[#E5E5E5] overflow-hidden hover:shadow-md transition-shadow">
               <div class="grid grid-cols-1 md:grid-cols-5 gap-0">
-                <div
-                  class="md:col-span-2 min-h-48 flex items-center justify-center"
-                  style="background: repeating-linear-gradient(135deg, #E8EDF0 0px, #E8EDF0 1px, #F0F4F7 1px, #F0F4F7 20px);"
-                >
-                  <span class="border border-gray-400 text-gray-500 text-xs font-mono px-3 py-1 rounded-full" style="background: rgba(255,255,255,0.6);">
-                    story photo &mdash; 16:10
-                  </span>
+                <div class="md:col-span-2 rounded-xl overflow-hidden aspect-[16/10]">
+                  <img src={placeholderStoryImages[i].src} alt={placeholderStoryImages[i].alt} class="w-full h-full object-cover" />
                 </div>
                 <div class="md:col-span-3 p-7 flex flex-col justify-between">
                   <div>
