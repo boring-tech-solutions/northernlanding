@@ -6,17 +6,41 @@ export interface Props {
   title?: string;
   description?: string;
   image?: string;
+  imageAlt?: string;
   canonical?: string;
+  type?: 'website' | 'article';
+  publishedTime?: Date;
+  author?: string;
 }
 
-const { title = "Northern Landing - Resources for Newcomers to Canada", description = "A comprehensive blog and resource hub for newcomers to Canada, featuring immigration stories, settlement guides, and community support.", image = "/og-image.jpg", canonical = Astro.url.href } = Astro.props;
+const {
+  title = "Northern Landing - Resources for Newcomers to Canada",
+  description = "A comprehensive blog and resource hub for newcomers to Canada, featuring immigration stories, settlement guides, and community support.",
+  image = "/og-image.png",
+  imageAlt = "Northern Landing - Welcome to Canada. Let's build your new home.",
+  canonical = new URL(Astro.url.pathname, Astro.site).href,
+  type = 'website',
+  publishedTime,
+  author,
+} = Astro.props;
+
+// Social crawlers require absolute URLs for og:image / twitter:image
+const imageUrl = new URL(image, Astro.site).href;
+
+const structuredData = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Northern Landing",
+  "description": "A comprehensive blog and resource hub for newcomers to Canada",
+  "url": Astro.site?.href,
+  "logo": new URL('/og-image.png', Astro.site).href,
+});
 ---
 
 <!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
   <head>
     <meta charset="UTF-8" />
-    <meta name="description" content={description} />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" type="image/x-icon" href="/favicon.ico" />
     <meta name="generator" content={Astro.generator} />
@@ -24,40 +48,35 @@ const { title = "Northern Landing - Resources for Newcomers to Canada", descript
     <!-- SEO Meta Tags -->
     <title>{title}</title>
     <meta name="description" content={description} />
-    <meta name="keywords" content="newcomers to Canada, Canadian immigration, settlement in Canada, immigration stories, Canada newcomer resources, Canadian citizenship, living in Canada, immigration blog, Canada settlement guide, newcomer support, Canadian community, immigration tips" />
-
-    <!-- Open Graph / Facebook -->
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content={canonical} />
-    <meta property="og:title" content={title} />
-    <meta property="og:description" content={description} />
-    <meta property="og:image" content={image} />
-
-    <!-- Twitter -->
-    <meta property="twitter:card" content="summary_large_image" />
-    <meta property="twitter:url" content={canonical} />
-    <meta property="twitter:title" content={title} />
-    <meta property="twitter:description" content={description} />
-    <meta property="twitter:image" content={image} />
 
     <!-- Canonical URL -->
     <link rel="canonical" href={canonical} />
 
+    <!-- Open Graph (https://ogp.me/) -->
+    <meta property="og:type" content={type} />
+    <meta property="og:site_name" content="Northern Landing" />
+    <meta property="og:locale" content="en_CA" />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={imageUrl} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content={imageAlt} />
+    {type === 'article' && publishedTime && (
+      <meta property="article:published_time" content={publishedTime.toISOString()} />
+    )}
+    {type === 'article' && author && <meta property="article:author" content={author} />}
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={imageUrl} />
+    <meta name="twitter:image:alt" content={imageAlt} />
+
     <!-- Structured Data -->
-    <script type="application/ld+json">
-      {
-        "@context": "https://schema.org",
-        "@type": "Organization",
-        "name": "Northern Landing",
-        "description": "A comprehensive blog and resource hub for newcomers to Canada",
-        "url": "https://northernlanding.ca",
-        "logo": "https://northernlanding.ca/logo.png",
-        "sameAs": [
-          "https://twitter.com/northernlanding",
-          "https://facebook.com/northernlanding"
-        ]
-      }
-    </script>
+    <script type="application/ld+json" is:inline set:html={structuredData} />
   </head>
   <body class="min-h-screen bg-[#F9F7F4]">
     <Header />
