@@ -24,9 +24,12 @@ const relatedPosts = allPosts
 const { Content } = await post.render();
 ---
 
-<BlogLayout 
+<BlogLayout
   title={`${data.title} - Northern Landing`}
   description={data.description}
+  type="article"
+  publishedTime={data.pubDate}
+  author={data.author}
 >
   <article class="py-16">
     <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
