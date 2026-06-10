@@ -12,18 +12,18 @@ const sortedPosts = posts.sort((a, b) =>
   title="Blog - Success Stories & Resources for Newcomers to Canada"
   description="Read inspiring success stories, immigration tips, and settlement guides from newcomers who have built successful lives in Canada."
 >
-  <div class="py-16">
+  <div class="py-24">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <!-- Header -->
-      <div class="mb-12">
+      <div class="mb-14">
         <div class="flex items-center gap-3 mb-4">
           <span class="block w-8 h-0.5 bg-[#CC2936]"></span>
           <span class="text-[#CC2936] text-xs font-semibold uppercase tracking-widest">SUCCESS STORIES</span>
         </div>
-        <h1 class="text-4xl md:text-5xl font-black tracking-tight text-[#1A1A1A] mb-4">
+        <h1 class="text-4xl lg:text-5xl font-black tracking-tight text-[#1A1A1A] leading-tight mb-4">
           Success Stories & Resources
         </h1>
-        <p class="text-xl text-[#555555] max-w-3xl">
+        <p class="text-[#555555] text-lg max-w-2xl">
           Real experiences, expert advice, and practical tips from newcomers who have successfully built their lives in Canada.
         </p>
       </div>
@@ -70,7 +70,7 @@ const sortedPosts = posts.sort((a, b) =>
                   <span class="bg-red-50 text-[#CC2936] text-xs font-medium px-3 py-1 rounded-full">
                     {post.data.category}
                   </span>
-                  <span class="ml-3 text-[#555555] text-sm">
+                  <span class="ml-3 text-gray-400 text-xs">
                     {new Date(post.data.pubDate).toLocaleDateString('en-CA', {
                       month: 'short',
                       day: 'numeric',
@@ -78,16 +78,16 @@ const sortedPosts = posts.sort((a, b) =>
                     })}
                   </span>
                 </div>
-                <h3 class="text-xl font-semibold text-[#1A1A1A] mb-3 line-clamp-2">
+                <h3 class="text-xl font-bold text-[#1A1A1A] mb-3 line-clamp-2">
                   {post.data.title}
                 </h3>
-                <p class="text-[#555555] mb-4 line-clamp-3">
+                <p class="text-[#555555] text-sm leading-relaxed mb-4 line-clamp-3">
                   {post.data.description}
                 </p>
                 <div class="flex items-center justify-between">
                   <a
                     href={`/blog/${post.slug}`}
-                    class="text-[#CC2936] font-semibold hover:text-red-800 transition-colors"
+                    class="text-[#1A1A1A] text-sm font-mono font-semibold hover:text-[#CC2936] transition-colors"
                   >
                     Read More →
                   </a>
