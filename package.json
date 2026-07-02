@@ -22,8 +22,8 @@
     "Canadian community",
     "immigration tips"
   ],
-  "author": "Northern Landing",
-  "license": "MIT",
+  "author": "Boring Tech Solutions",
+  "license": "EULA",
   "dependencies": {
     "astro": "^4.8.0",
     "react": "^18.2.0",
